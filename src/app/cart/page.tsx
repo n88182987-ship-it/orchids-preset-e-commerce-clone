@@ -12,15 +12,28 @@ import { motion } from "framer-motion";
 export default function CartPage() {
   const { cart, removeFromCart, totalPrice, totalItems } = useCart();
 
+  const [customerName, setCustomerName] = React.useState("");
+  const [customerPhone, setCustomerPhone] = React.useState("");
+
   const handleWhatsAppCheckout = () => {
-    // Replace with your actual WhatsApp number (include country code, e.g., '919000000000' for India)
-    const phoneNumber = "919000000000"; 
+    if (!customerName || !customerPhone) {
+      alert("Please enter your name and phone number to proceed.");
+      return;
+    }
+
+    const phoneNumber = "919727155628"; 
+    const orderNo = Math.random().toString(36).substring(2, 9).toUpperCase();
+    const date = new Date().toLocaleDateString();
     
     let message = "✨ *NEW ORDER FROM MAGIC TOOLS* ✨%0A%0A";
-    message += "I'm interested in purchasing the following preset bundles:%0A%0A";
+    message += `📋 *Order No:* ${orderNo}%0A`;
+    message += `📅 *Date:* ${date}%0A`;
+    message += `👤 *Name:* ${customerName}%0A`;
+    message += `📞 *Phone:* ${customerPhone}%0A%0A`;
     
+    message += "🛍️ *PRODUCTS:*%0A";
     cart.forEach((item, index) => {
-      message += `📌 *${index + 1}. ${item.name.toUpperCase()}*%0A`;
+      message += `${index + 1}. *${item.name.toUpperCase()}*%0A`;
       message += `   Qty: ${item.quantity}%0A`;
       message += `   Price: $${(item.price * item.quantity).toFixed(2)}%0A%0A`;
     });
@@ -28,7 +41,7 @@ export default function CartPage() {
     message += "──────────────────%0A";
     message += `💰 *TOTAL AMOUNT: $${totalPrice.toFixed(2)}*%0A`;
     message += "──────────────────%0A%0A";
-    message += "Please let me know the payment details and next steps. Thank you!";
+    message += "Please confirm my order. Thank you!";
     
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
     window.parent.postMessage({ type: "OPEN_EXTERNAL_URL", data: { url: whatsappUrl } }, "*");
