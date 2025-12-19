@@ -52,7 +52,7 @@ const HeroGrid = () => {
               />
             </div>
             <a
-              href="#"
+              href="#shop"
               className="intro-btn border border-white bg-transparent text-white uppercase transition-all duration-300 px-6 py-3 tracking-[0.2em] font-body font-normal text-[12px] md:text-[14px] hover:bg-white hover:text-black whitespace-nowrap"
             >
               ENTER STORE
