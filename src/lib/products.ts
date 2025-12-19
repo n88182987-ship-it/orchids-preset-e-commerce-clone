@@ -18,6 +18,7 @@ export const products = [
     description: "Create mood and atmosphere with our premium film-inspired presets. Ideal for street, travel, and lifestyle photography.",
     before: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/f0393263-6b1f-4544-bf0a-42b0640ce9a2-colourstorepresets-com/assets/images/BFR-AFT-6-5.webp",
     after: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/f0393263-6b1f-4544-bf0a-42b0640ce9a2-colourstorepresets-com/assets/images/CLRPIC-4-4.webp",
+    category: "CINEMATIC",
     longDescription: "Our Cinematic Lifestyle pack is built for storytellers. Inspired by classic film stocks and modern cinema, these presets add depth, grain, and sophisticated color grading to your images. Whether you're shooting on the streets of Mumbai or in a sun-drenched cafe, these presets provide a cohesive, high-end look that stands out on social media and in portfolios.",
     features: ["15+ Film-Style Presets", "Custom Grain Controls", "Natural Contrast Profiles", "Lifetime Updates"]
   },
