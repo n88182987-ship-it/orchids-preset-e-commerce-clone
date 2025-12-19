@@ -4,12 +4,14 @@ import React from "react";
 import { BeforeAfterSlider } from "@/components/ui/BeforeAfterSlider";
 import { motion } from "framer-motion";
 import { useCart } from "@/context/CartContext";
+import { useCategory } from "@/context/CategoryContext";
 import { products } from "@/lib/products";
 import { toast } from "sonner";
 import Link from "next/link";
 
 export function ProductShowcase() {
   const { addToCart } = useCart();
+  const { selectedCategory, setSelectedCategory } = useCategory();
 
   const handleAddToCart = (e: React.MouseEvent, product: any) => {
     e.preventDefault();
@@ -24,6 +26,10 @@ export function ProductShowcase() {
     toast.success(`${product.title} added to cart!`);
   };
 
+  const filteredProducts = selectedCategory
+    ? products.filter(p => p.category === selectedCategory)
+    : products;
+
   return (
     <section id="shop" className="py-24 bg-black">
       <div className="container">
@@ -34,8 +40,16 @@ export function ProductShowcase() {
             viewport={{ once: true }}
             className="h2 mb-4"
           >
-            FEATURED BUNDLES
+            {selectedCategory ? `${selectedCategory} BUNDLES` : "FEATURED BUNDLES"}
           </motion.h2>
+          {selectedCategory && (
+            <button 
+              onClick={() => setSelectedCategory(null)}
+              className="text-[10px] tracking-[0.3em] text-white/40 hover:text-white transition-colors mb-4 uppercase"
+            >
+              / VIEW ALL BUNDLES
+            </button>
+          )}
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -48,7 +62,7 @@ export function ProductShowcase() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-          {products.map((product, index) => (
+          {filteredProducts.map((product, index) => (
             <motion.div
               key={product.id}
               initial={{ opacity: 0, y: 20 }}
