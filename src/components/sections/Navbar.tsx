@@ -40,6 +40,13 @@ export function Navbar() {
     setSelectedCategory(category);
     setIsDropdownOpen(false);
     setIsMobileMenuOpen(false);
+    
+    // If not on home page, redirect to home with shop hash
+    if (window.location.pathname !== '/') {
+      window.location.href = `/#shop`;
+      return;
+    }
+
     const shopSection = document.getElementById("shop");
     if (shopSection) {
       shopSection.scrollIntoView({ behavior: "smooth" });
