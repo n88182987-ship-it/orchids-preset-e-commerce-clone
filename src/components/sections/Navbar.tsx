@@ -182,7 +182,25 @@ export function Navbar() {
               </button>
             </div>
           </div>
-      </nav>
+        </nav>
+
+        {/* Slogan Bar */}
+        <div className={`fixed left-0 right-0 z-40 transition-all duration-500 overflow-hidden ${
+          isScrolled ? "top-[73px]" : "top-[104px]"
+        }`}>
+          <div className="bg-white/5 backdrop-blur-md border-b border-white/5 py-3">
+            <div className="container">
+              <motion.p 
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, delay: 0.5 }}
+                className="text-center text-[10px] md:text-xs tracking-[0.3em] uppercase font-medium text-white/60"
+              >
+                Transform Raw Moments Into <span className="text-blue-400">Timeless, Exclusive Presets</span> with MagicTools
+              </motion.p>
+            </div>
+          </div>
+        </div>
 
       {/* Mobile Menu Overlay */}
       <AnimatePresence>
