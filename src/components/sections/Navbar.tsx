@@ -36,6 +36,16 @@ export function Navbar() {
     { name: "Gallery", href: "/#gallery" },
   ];
 
+  const handleCategorySelect = (category: string) => {
+    setSelectedCategory(category);
+    setIsDropdownOpen(false);
+    setIsMobileMenuOpen(false);
+    const shopSection = document.getElementById("shop");
+    if (shopSection) {
+      shopSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <>
       <nav
@@ -46,15 +56,65 @@ export function Navbar() {
           <div className="container flex items-center justify-between">
             {/* Desktop Links Left */}
             <div className="hidden md:flex items-center gap-10">
-              {navLinks.slice(0, 2).map((link) => (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  className="nav-link text-white/90 hover:text-white transition-colors tracking-[0.2em] text-[13px] uppercase"
-                >
-                  {link.name}
-                </Link>
-              ))}
+              <Link
+                href="/"
+                className="nav-link text-white/90 hover:text-white transition-colors tracking-[0.2em] text-[13px] uppercase"
+              >
+                Home
+              </Link>
+              
+              {/* Presets Dropdown */}
+              <div 
+                className="relative group"
+                onMouseEnter={() => setIsDropdownOpen(true)}
+                onMouseLeave={() => setIsDropdownOpen(false)}
+              >
+                <button className="flex items-center gap-1 nav-link text-white/90 hover:text-white transition-colors tracking-[0.2em] text-[13px] uppercase">
+                  PRESETS <ChevronDown size={14} className={`transition-transform duration-300 ${isDropdownOpen ? "rotate-180" : ""}`} />
+                </button>
+                
+                <AnimatePresence>
+                  {isDropdownOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 10 }}
+                      className="absolute top-full left-0 pt-4"
+                    >
+                      <div className="bg-black/90 backdrop-blur-xl border border-white/10 p-6 min-w-[240px] shadow-2xl">
+                        <div className="flex flex-col gap-4">
+                          <button 
+                            onClick={() => {
+                              setSelectedCategory(null);
+                              setIsDropdownOpen(false);
+                            }}
+                            className="text-left text-[11px] tracking-[0.3em] text-white/60 hover:text-white transition-colors uppercase"
+                          >
+                            VIEW ALL BUNDLES
+                          </button>
+                          <div className="h-[1px] bg-white/5 w-full my-1" />
+                          {categories.map((cat) => (
+                            <button
+                              key={cat}
+                              onClick={() => handleCategorySelect(cat)}
+                              className="text-left text-[11px] tracking-[0.3em] text-white/60 hover:text-white transition-colors uppercase"
+                            >
+                              {cat}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              <Link
+                href="/#shop"
+                className="nav-link text-white/90 hover:text-white transition-colors tracking-[0.2em] text-[13px] uppercase"
+              >
+                Shop
+              </Link>
             </div>
 
             {/* Logo */}
