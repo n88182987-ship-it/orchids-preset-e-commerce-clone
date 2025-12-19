@@ -1,10 +1,31 @@
 "use client";
 
-import React from 'react';
+import React, { useRef } from 'react';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
+import { motion, useMotionValue, useSpring, useMotionTemplate } from 'framer-motion';
 
 const HeroGrid = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const mouseX = useMotionValue(-1000);
+  const mouseY = useMotionValue(-1000);
+
+  const springX = useSpring(mouseX, { stiffness: 300, damping: 30 });
+  const springY = useSpring(mouseY, { stiffness: 300, damping: 30 });
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!containerRef.current) return;
+    const { left, top } = containerRef.current.getBoundingClientRect();
+    mouseX.set(e.clientX - left);
+    mouseY.set(e.clientY - top);
+  };
+
+  const handleMouseLeave = () => {
+    mouseX.set(-1000);
+    mouseY.set(-1000);
+  };
+
+  const maskImage = useMotionTemplate`radial-gradient(300px circle at ${springX}px ${springY}px, transparent, black)`;
+
   const imagesBefore = [
     { src: 'https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/f0393263-6b1f-4544-bf0a-42b0640ce9a2-colourstorepresets-com/assets/images/CLRPIC-2-1.webp', alt: 'Wedding photography example 1' },
     { src: 'https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/f0393263-6b1f-4544-bf0a-42b0640ce9a2-colourstorepresets-com/assets/images/BFR-AFT-9-2.webp', alt: 'Wedding photography example 2' },
@@ -46,12 +67,17 @@ const HeroGrid = () => {
   };
 
   return (
-    <section className="intro-hero w-full overflow-hidden bg-black min-h-screen">
+    <section 
+      ref={containerRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className="intro-hero w-full overflow-hidden bg-black min-h-screen relative"
+    >
         <motion.div 
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="intro-grid grid grid-cols-2 md:grid-cols-5 gap-0 w-full min-h-screen"
+          className="intro-grid grid grid-cols-2 md:grid-cols-5 gap-0 w-full min-h-screen relative z-0"
         >
           {/* First 7 Images */}
           {imagesBefore.map((img, index) => (
@@ -68,63 +94,61 @@ const HeroGrid = () => {
                 sizes="(max-width: 768px) 50vw, 20vw"
                 priority={index < 5}
               />
-              <div className="absolute inset-0 bg-blue-500/10 backdrop-blur-[1px] mix-blend-overlay pointer-events-none"></div>
-              <div className="absolute inset-0 bg-gradient-to-tr from-blue-900/20 to-transparent pointer-events-none"></div>
             </motion.div>
           ))}
 
-            {/* Center Focal Area */}
+          {/* Center Focal Area */}
+          <motion.div 
+            variants={{
+              hidden: { opacity: 0, scale: 0.5 },
+              visible: { 
+                opacity: 1, 
+                scale: 1,
+                transition: { type: "spring", damping: 15, stiffness: 100, delay: 1 }
+              }
+            }}
+            className="intro-center flex items-center justify-center relative z-20 aspect-square md:aspect-auto overflow-hidden"
+          >
             <motion.div 
-              variants={{
-                hidden: { opacity: 0, scale: 0.5 },
-                visible: { 
-                  opacity: 1, 
-                  scale: 1,
-                  transition: { type: "spring", damping: 15, stiffness: 100, delay: 1 }
-                }
+              animate={{ 
+                boxShadow: ["0 0 50px rgba(30,58,138,0.3)", "0 0 80px rgba(59,130,246,0.5)", "0 0 50px rgba(30,58,138,0.3)"]
               }}
-              className="intro-center flex items-center justify-center relative z-10 aspect-square md:aspect-auto overflow-hidden"
-            >
-              <motion.div 
-                animate={{ 
-                  boxShadow: ["0 0 50px rgba(30,58,138,0.3)", "0 0 80px rgba(59,130,246,0.5)", "0 0 50px rgba(30,58,138,0.3)"]
-                }}
-                transition={{ duration: 4, repeat: Infinity }}
-                className="absolute inset-0 bg-black/40 backdrop-blur-3xl border border-white/10"
-              />
-              <div className="intro-content flex flex-col items-center justify-center text-center p-8 relative z-20 w-full h-full">
-                  <motion.div 
-                    animate={{ y: [0, -10, 0] }}
-                    transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                    className="relative w-32 h-32 mb-6 md:w-40 md:h-40"
-                  >
-                    <Image
-                      src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/magic_tools__3_-removebg-preview-1766149505661.png"
-                      alt="Magic Tools Logo"
-                      fill
-                      className="object-contain"
-                      priority
-                    />
-                  </motion.div>
-                  
-                  <div className="space-y-2 mb-10">
-                    <h1 className="text-white font-display text-2xl md:text-4xl tracking-[0.4em] uppercase font-bold">Magic Tools</h1>
-                    <p className="text-[10px] md:text-[12px] text-white/60 tracking-[0.5em] uppercase font-light">Elevate Your Visual Story</p>
-                  </div>
-
-                <motion.a
-                  href="#shop"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="group relative flex items-center gap-4 px-8 py-4 overflow-hidden"
+              transition={{ duration: 4, repeat: Infinity }}
+              className="absolute inset-0 bg-black/40 backdrop-blur-3xl border border-white/10"
+            />
+            <div className="intro-content flex flex-col items-center justify-center text-center p-8 relative z-30 w-full h-full">
+                <motion.div 
+                  animate={{ y: [0, -10, 0] }}
+                  transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                  className="relative w-32 h-32 mb-6 md:w-40 md:h-40"
                 >
-                  <div className="absolute inset-0 bg-white/5 group-hover:bg-white transition-colors duration-500" />
-                  <div className="absolute inset-0 border border-white/20 group-hover:border-white transition-colors duration-500" />
-                  <span className="relative z-10 text-white group-hover:text-black transition-colors duration-500 tracking-[0.3em] text-[11px] font-light">EXPLORE STORE</span>
-                  <div className="relative z-10 w-6 h-[1px] bg-white group-hover:bg-black transition-colors duration-500" />
-                </motion.a>
-              </div>
-            </motion.div>
+                  <Image
+                    src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/magic_tools__3_-removebg-preview-1766149505661.png"
+                    alt="Magic Tools Logo"
+                    fill
+                    className="object-contain"
+                    priority
+                  />
+                </motion.div>
+                
+                <div className="space-y-2 mb-10">
+                  <h1 className="text-white font-display text-2xl md:text-4xl tracking-[0.4em] uppercase font-bold">Magic Tools</h1>
+                  <p className="text-[10px] md:text-[12px] text-white/60 tracking-[0.5em] uppercase font-light">Elevate Your Visual Story</p>
+                </div>
+
+              <motion.a
+                href="#shop"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="group relative flex items-center gap-4 px-8 py-4 overflow-hidden"
+              >
+                <div className="absolute inset-0 bg-white/5 group-hover:bg-white transition-colors duration-500" />
+                <div className="absolute inset-0 border border-white/20 group-hover:border-white transition-colors duration-500" />
+                <span className="relative z-10 text-white group-hover:text-black transition-colors duration-500 tracking-[0.3em] text-[11px] font-light">EXPLORE STORE</span>
+                <div className="relative z-10 w-6 h-[1px] bg-white group-hover:bg-black transition-colors duration-500" />
+              </motion.a>
+            </div>
+          </motion.div>
 
           {/* Last 8 Images */}
           {imagesAfter.map((img, index) => (
@@ -140,10 +164,22 @@ const HeroGrid = () => {
                 className="object-cover transition-transform duration-700 group-hover:scale-110"
                 sizes="(max-width: 768px) 50vw, 20vw"
               />
-              <div className="absolute inset-0 bg-blue-500/10 backdrop-blur-[1px] mix-blend-overlay pointer-events-none"></div>
-              <div className="absolute inset-0 bg-gradient-to-tr from-blue-900/20 to-transparent pointer-events-none"></div>
             </motion.div>
           ))}
+
+          {/* Spotlight Overlay */}
+          <motion.div 
+            className="absolute inset-0 pointer-events-none z-10"
+            style={{ 
+              backdropFilter: 'blur(12px)',
+              WebkitBackdropFilter: 'blur(12px)',
+              maskImage: maskImage,
+              WebkitMaskImage: maskImage
+            }}
+          >
+            <div className="absolute inset-0 bg-blue-900/20 mix-blend-overlay" />
+            <div className="absolute inset-0 bg-blue-500/5 backdrop-blur-[2px]" />
+          </motion.div>
         </motion.div>
 
       <style jsx global>{`
