@@ -1,10 +1,10 @@
 export const products = [
-  {
-    id: "1",
-    title: "INDIAN WEDDING BUNDLE",
-    price: 49.00,
-    priceLabel: "$49.00",
-    description: "Our best-selling collection for vibrant and timeless wedding edits. Perfect for capturing the rich colors and emotions of Indian ceremonies.",
+    {
+      id: "1",
+      title: "INDIAN WEDDING BUNDLE",
+      price: 2499,
+      priceLabel: "₹2,499",
+      description: "Our best-selling collection for vibrant and timeless wedding edits. Perfect for capturing the rich colors and emotions of Indian ceremonies.",
     before: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/f0393263-6b1f-4544-bf0a-42b0640ce9a2-colourstorepresets-com/assets/images/BFR-AFT-9-2.webp",
     after: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/f0393263-6b1f-4544-bf0a-42b0640ce9a2-colourstorepresets-com/assets/images/CLRPIC-2-1.webp",
     category: "INDIAN WEDDING",
