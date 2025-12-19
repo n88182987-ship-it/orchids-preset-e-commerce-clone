@@ -3,14 +3,24 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Search, ShoppingBag, Menu, X } from "lucide-react";
+import { Search, ShoppingBag, Menu, X, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useCart } from "@/context/CartContext";
+import { useCategory } from "@/context/CategoryContext";
+
+const categories = [
+  "INDIAN WEDDING",
+  "PORTRAITS",
+  "LIFESTYLE",
+  "CINEMATIC"
+];
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { totalItems } = useCart();
+  const { setSelectedCategory } = useCategory();
 
   useEffect(() => {
     const handleScroll = () => {
