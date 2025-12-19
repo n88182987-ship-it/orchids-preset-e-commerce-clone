@@ -35,48 +35,31 @@ export default function Home() {
                 </p>
 
                 <div className="space-y-4">
-                  <h3 className="text-sm uppercase tracking-[0.3em] text-white/40 font-medium">Bundle Features</h3>
-                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-[13px] text-white/70">
-                    <li className="flex items-center gap-2">
-                      <div className="w-1 h-1 bg-blue-500 rounded-full" />
-                      One-click Professional Results
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <div className="w-1 h-1 bg-blue-500 rounded-full" />
-                      Mobile & Desktop Compatible
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <div className="w-1 h-1 bg-blue-500 rounded-full" />
-                      Lifetime Access & Updates
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <div className="w-1 h-1 bg-blue-500 rounded-full" />
-                      Step-by-step Installation Guide
-                    </li>
-                  </ul>
-                </div>
+                  <h3 className="text-sm uppercase tracking-[0.3em] text-white/40 font-medium italic">Simplicity is Magic</h3>
+                  <div className="grid grid-cols-1 gap-6">
+                    <div className="group space-y-3">
+                      <div className="flex items-center gap-4">
+                        <div className="w-8 h-8 rounded-full border border-blue-500/30 flex items-center justify-center text-[10px] text-blue-400 font-bold group-hover:bg-blue-500 group-hover:text-white transition-all duration-500">01</div>
+                        <h4 className="text-white text-sm tracking-widest uppercase font-semibold">Choose Your Vibe</h4>
+                      </div>
+                      <p className="text-white/50 text-xs leading-relaxed pl-12">Select from our exclusive range of bundles tailored for different lighting and aesthetics.</p>
+                    </div>
+                    
+                    <div className="group space-y-3">
+                      <div className="flex items-center gap-4">
+                        <div className="w-8 h-8 rounded-full border border-blue-500/30 flex items-center justify-center text-[10px] text-blue-400 font-bold group-hover:bg-blue-500 group-hover:text-white transition-all duration-500">02</div>
+                        <h4 className="text-white text-sm tracking-widest uppercase font-semibold">One-Click Magic</h4>
+                      </div>
+                      <p className="text-white/50 text-xs leading-relaxed pl-12">Import to Lightroom (Mobile or Desktop) and apply with a single tap. It's that simple.</p>
+                    </div>
 
-                <div className="grid grid-cols-3 gap-6 pt-4">
-                  <div className="p-6 border border-white/10 bg-white/5 backdrop-blur-sm relative group">
-                    <div className="absolute inset-0 bg-blue-600/0 group-hover:bg-blue-600/5 transition-colors duration-500" />
-                    <span className="block text-3xl font-display mb-1 text-white">
-                      <Counter value={5000} />+
-                    </span>
-                    <span className="text-[9px] tracking-[0.2em] uppercase opacity-40 font-bold">SOLD PRESETS</span>
-                  </div>
-                  <div className="p-6 border border-white/10 bg-white/5 backdrop-blur-sm relative group">
-                    <div className="absolute inset-0 bg-blue-600/0 group-hover:bg-blue-600/5 transition-colors duration-500" />
-                    <span className="block text-3xl font-display mb-1 text-white">
-                      <Counter value={100} />+
-                    </span>
-                    <span className="text-[9px] tracking-[0.2em] uppercase opacity-40 font-bold">PRO PRESETS</span>
-                  </div>
-                  <div className="p-6 border border-white/10 bg-white/5 backdrop-blur-sm relative group">
-                    <div className="absolute inset-0 bg-blue-600/0 group-hover:bg-blue-600/5 transition-colors duration-500" />
-                    <span className="block text-3xl font-display mb-1 text-white">
-                      24/7
-                    </span>
-                    <span className="text-[9px] tracking-[0.2em] uppercase opacity-40 font-bold">SUPPORT</span>
+                    <div className="group space-y-3">
+                      <div className="flex items-center gap-4">
+                        <div className="w-8 h-8 rounded-full border border-blue-500/30 flex items-center justify-center text-[10px] text-blue-400 font-bold group-hover:bg-blue-500 group-hover:text-white transition-all duration-500">03</div>
+                        <h4 className="text-white text-sm tracking-widest uppercase font-semibold">Refine & Export</h4>
+                      </div>
+                      <p className="text-white/50 text-xs leading-relaxed pl-12">Tweak exposure if needed, and export your masterpiece in high resolution.</p>
+                    </div>
                   </div>
                 </div>
               </div>
