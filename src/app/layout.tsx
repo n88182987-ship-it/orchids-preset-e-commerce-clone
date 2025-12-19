@@ -17,8 +17,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Colour Store Presets",
-  description: "Professional Presets for Photographers",
+  title: "Magic Tools",
+  description: "Professional Presets and Bundles for Photographers",
 };
 
 export default function RootLayout({
