@@ -139,7 +139,7 @@ export default function CartPage() {
 
                     <div className="space-y-4 pt-4">
                       <div className="space-y-2">
-                        <label className="text-[10px] tracking-[0.2em] uppercase text-white/40 font-semibold">Your Name</112>
+                        <label className="text-[10px] tracking-[0.2em] uppercase text-white/40 font-semibold">Your Name</label>
                         <input 
                           type="text"
                           value={customerName}
@@ -149,7 +149,7 @@ export default function CartPage() {
                         />
                       </div>
                       <div className="space-y-2">
-                        <label className="text-[10px] tracking-[0.2em] uppercase text-white/40 font-semibold">Phone Number</112>
+                        <label className="text-[10px] tracking-[0.2em] uppercase text-white/40 font-semibold">Phone Number</label>
                         <input 
                           type="tel"
                           value={customerPhone}
