@@ -35,4 +35,16 @@ export const products = [
     longDescription: "Elevate your portrait work with the Portrait Pro Pack. These presets focus on skin tone accuracy, subtle eye enhancements, and professional lighting adjustments. Designed to work with various lighting setups—from studio strobes to natural window light—this pack saves you hours in post-production while delivering studio-quality results every time.",
     features: ["10+ Specialized Portrait Presets", "Skin Smoothing Masks", "Eye & Detail Enhancement", "Easy-to-Follow Video Guide"]
   },
+  {
+    id: "4",
+    title: "ESSENTIAL LIFESTYLE",
+    price: 35.00,
+    priceLabel: "$35.00",
+    description: "The perfect everyday preset for bloggers and influencers. Clean tones, natural contrast, and beautiful skin.",
+    before: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/f0393263-6b1f-4544-bf0a-42b0640ce9a2-colourstorepresets-com/assets/images/CLRPIC-21-7.webp",
+    after: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/f0393263-6b1f-4544-bf0a-42b0640ce9a2-colourstorepresets-com/assets/images/CLRPIC-21-7.webp",
+    category: "LIFESTYLE",
+    longDescription: "Essential Lifestyle is our most versatile pack yet. Designed for the modern creator, these presets provide a clean, consistent aesthetic across all your photos. From indoor shots to outdoor landscapes, these tools enhance the natural beauty of your subjects without looking 'over-edited'.",
+    features: ["12+ Versatile Presets", "Natural Skin Tone Protection", "One-Click Mobile Sync", "Instagram-Ready Look"]
+  },
 ];
