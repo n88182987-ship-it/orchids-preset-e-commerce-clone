@@ -111,32 +111,32 @@ export default function CartPage() {
                         </div>
                         <p className="text-xs text-muted-foreground mt-1 uppercase tracking-widest">Digital Download</p>
                       </div>
-                      <div className="flex justify-between items-end">
-                        <div className="text-sm font-light">Qty: {item.quantity}</div>
-                        <div className="font-display text-blue-400">${(item.price * item.quantity).toFixed(2)}</div>
+                        <div className="flex justify-between items-end">
+                          <div className="text-sm font-light">Qty: {item.quantity}</div>
+                          <div className="font-display text-blue-400">₹{(item.price * item.quantity).toLocaleString('en-IN')}</div>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                ))}
-              </div>
-
-              <div className="lg:col-span-1">
-                <div className="p-8 border border-white/10 bg-white/5 backdrop-blur-lg space-y-6 sticky top-32">
-                  <h2 className="font-display text-xl tracking-widest uppercase">Summary</h2>
-                  <div className="space-y-4 border-b border-white/5 pb-6">
-                    <div className="flex justify-between text-sm font-light">
-                      <span className="opacity-60">Subtotal</span>
-                      <span>${totalPrice.toFixed(2)}</span>
+                  ))}
+                </div>
+  
+                <div className="lg:col-span-1">
+                  <div className="p-8 border border-white/10 bg-white/5 backdrop-blur-lg space-y-6 sticky top-32">
+                    <h2 className="font-display text-xl tracking-widest uppercase">Summary</h2>
+                    <div className="space-y-4 border-b border-white/5 pb-6">
+                      <div className="flex justify-between text-sm font-light">
+                        <span className="opacity-60">Subtotal</span>
+                        <span>₹{totalPrice.toLocaleString('en-IN')}</span>
+                      </div>
+                      <div className="flex justify-between text-sm font-light">
+                        <span className="opacity-60">Taxes</span>
+                        <span>₹0</span>
+                      </div>
                     </div>
-                    <div className="flex justify-between text-sm font-light">
-                      <span className="opacity-60">Taxes</span>
-                      <span>$0.00</span>
-                    </div>
-                  </div>
-                    <div className="flex justify-between font-display text-lg">
-                      <span>Total</span>
-                      <span className="text-blue-400">${totalPrice.toFixed(2)}</span>
-                    </div>
+                      <div className="flex justify-between font-display text-lg">
+                        <span>Total</span>
+                        <span className="text-blue-400">₹{totalPrice.toLocaleString('en-IN')}</span>
+                      </div>
 
                     <div className="space-y-4 pt-4">
                       <div className="space-y-2">
