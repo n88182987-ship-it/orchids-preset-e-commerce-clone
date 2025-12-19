@@ -5,6 +5,12 @@ import Image from 'next/image';
 import { motion, useMotionValue, useSpring, useMotionTemplate } from 'framer-motion';
 
 const HeroGrid = () => {
+  const [isMounted, setIsMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   const containerRef = useRef<HTMLDivElement>(null);
   const mouseX = useMotionValue(-1000);
   const mouseY = useMotionValue(-1000);
