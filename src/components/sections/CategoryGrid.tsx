@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { useCategory } from "@/context/CategoryContext";
 
 const categories = [
   {
