@@ -43,28 +43,28 @@ const HeroGrid = () => {
             </div>
           ))}
 
-          {/* Center Focal Area - Item 8 in a 5-column grid (Row 2, Column 3) */}
-          <div className="intro-center flex items-center justify-center relative z-10 aspect-square md:aspect-auto overflow-hidden">
-            <div className="absolute inset-0 bg-blue-950/40 backdrop-blur-xl border border-blue-400/30"></div>
-            <div className="intro-content flex flex-col items-center justify-center text-center p-4 relative z-20">
-                <div className="relative w-24 h-24 mb-6 md:w-32 md:h-32 drop-shadow-[0_0_15px_rgba(59,130,246,0.5)]">
-                  <Image
-                    src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/magic_tools__3_-removebg-preview-1766149505661.png"
-                    alt="Magic Tools Logo"
-                    fill
-                    className="object-contain"
-                    priority
-                  />
-                </div>
-                <h1 className="text-white font-display text-2xl md:text-3xl tracking-[0.3em] mb-8 uppercase">Magic Tools</h1>
-              <a
-                href="#shop"
-                className="intro-btn border border-blue-400/50 bg-blue-500/10 text-white uppercase transition-all duration-500 px-8 py-4 tracking-[0.3em] font-body font-light text-[12px] md:text-[14px] hover:bg-blue-500 hover:text-white hover:border-blue-400 hover:shadow-[0_0_30px_rgba(59,130,246,0.4)] whitespace-nowrap backdrop-blur-md"
-              >
-                EXPLORE STORE
-              </a>
+            {/* Center Focal Area - Item 8 in a 5-column grid (Row 2, Column 3) */}
+            <div className="intro-center flex items-center justify-center relative z-10 aspect-square md:aspect-auto overflow-hidden">
+              <div className="absolute inset-0 bg-blue-950/60 backdrop-blur-2xl border border-blue-400/20 shadow-[0_0_50px_rgba(30,58,138,0.5)]"></div>
+              <div className="intro-content flex flex-col items-center justify-center text-center p-8 relative z-20 w-full h-full">
+                  <div className="relative w-32 h-32 mb-8 md:w-48 md:h-48 drop-shadow-[0_0_20px_rgba(59,130,246,0.6)]">
+                    <Image
+                      src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/magic_tools__3_-removebg-preview-1766149505661.png"
+                      alt="Magic Tools Logo"
+                      fill
+                      className="object-contain scale-125"
+                      priority
+                    />
+                  </div>
+                  <h1 className="text-white font-display text-3xl md:text-5xl tracking-[0.4em] mb-10 uppercase font-bold drop-shadow-lg">Magic Tools</h1>
+                <a
+                  href="#shop"
+                  className="intro-btn border border-blue-400/50 bg-blue-500/10 text-white uppercase transition-all duration-500 px-10 py-5 tracking-[0.3em] font-body font-light text-[12px] md:text-[14px] hover:bg-blue-500 hover:text-white hover:border-blue-400 hover:shadow-[0_0_30px_rgba(59,130,246,0.5)] whitespace-nowrap backdrop-blur-md"
+                >
+                  EXPLORE STORE
+                </a>
+              </div>
             </div>
-          </div>
 
           {/* Last 8 Images */}
           {imagesAfter.map((img, index) => (
