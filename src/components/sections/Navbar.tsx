@@ -126,17 +126,18 @@ export function Navbar() {
             </div>
 
             {/* Logo */}
-            <Link href="/" onClick={handleHomeClick} className="flex items-center gap-4 group">
-              <div className="relative w-14 h-14 md:w-16 md:h-16 transition-transform duration-500 group-hover:scale-110">
-                <Image
-                  src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/magic_tools__3_-removebg-preview-1766149505661.png"
-                  alt="Magic Tools Logo"
-                  fill
-                  className="object-contain"
-                />
-              </div>
-              <span className="font-display text-xl md:text-2xl tracking-[0.3em] text-white uppercase font-bold">Magic Tools</span>
-            </Link>
+              <Link href="/" onClick={handleHomeClick} className="flex items-center gap-4 group">
+                <div className="relative w-12 h-12 md:w-14 md:h-14 transition-transform duration-500 group-hover:scale-110">
+                  <Image
+                    src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/magic_tools__3_-removebg-preview-1766149505661.png"
+                    alt="Magic Tools Logo"
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+                <span className="font-display text-lg md:text-xl tracking-[0.3em] text-white uppercase font-bold">Magic Tools</span>
+              </Link>
+
 
             {/* Desktop Links Right */}
             <div className="hidden md:flex items-center gap-10">
