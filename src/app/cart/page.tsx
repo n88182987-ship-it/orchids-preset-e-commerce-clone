@@ -15,37 +15,38 @@ export default function CartPage() {
   const [customerName, setCustomerName] = React.useState("");
   const [customerPhone, setCustomerPhone] = React.useState("");
 
-  const handleWhatsAppCheckout = () => {
-    if (!customerName || !customerPhone) {
-      alert("Please enter your name and phone number to proceed.");
-      return;
-    }
+    const handleWhatsAppCheckout = () => {
+      if (!customerName || !customerPhone) {
+        alert("Please enter your name and phone number to proceed.");
+        return;
+      }
 
-    const phoneNumber = "919727155628"; 
-    const orderNo = Math.random().toString(36).substring(2, 9).toUpperCase();
-    const date = new Date().toLocaleDateString();
-    
-    let message = "✨ *NEW ORDER FROM MAGIC TOOLS* ✨%0A%0A";
-    message += `📋 *Order No:* ${orderNo}%0A`;
-    message += `📅 *Date:* ${date}%0A`;
-    message += `👤 *Name:* ${customerName}%0A`;
-    message += `📞 *Phone:* ${customerPhone}%0A%0A`;
-    
-    message += "🛍️ *PRODUCTS:*%0A";
-    cart.forEach((item, index) => {
-      message += `${index + 1}. *${item.name.toUpperCase()}*%0A`;
-      message += `   Qty: ${item.quantity}%0A`;
-      message += `   Price: $${(item.price * item.quantity).toFixed(2)}%0A%0A`;
-    });
-    
-    message += "──────────────────%0A";
-    message += `💰 *TOTAL AMOUNT: $${totalPrice.toFixed(2)}*%0A`;
-    message += "──────────────────%0A%0A";
-    message += "Please confirm my order. Thank you!";
-    
-    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
-    window.parent.postMessage({ type: "OPEN_EXTERNAL_URL", data: { url: whatsappUrl } }, "*");
-  };
+      const phoneNumber = "919727155628"; 
+      const orderNo = `ORD-${Math.random().toString(36).substring(2, 9).toUpperCase()}`;
+      const date = new Date().toLocaleDateString('en-IN', {
+        day: '2-digit',
+        month: 'long',
+        year: 'numeric'
+      });
+      
+      const productList = cart.map((item, index) => 
+        `${index + 1}. ${item.name} (x${item.quantity}) - ₹${(item.price * item.quantity).toLocaleString('en-IN')}`
+      ).join('%0A');
+
+      let message = "Hello,%0A";
+      message += "I have placed an order. Please find the details below:%0A%0A";
+      message += `Order No: ${orderNo}%0A`;
+      message += `Order Date: ${date}%0A%0A`;
+      message += `Customer Name: ${customerName}%0A`;
+      message += `Phone Number: ${customerPhone}%0A%0A`;
+      message += "Products:%0A";
+      message += `${productList}%0A%0A`;
+      message += `Total Amount Paid: ₹${totalPrice.toLocaleString('en-IN')}%0A%0A`;
+      message += "Please confirm my order. Thank you.";
+      
+      const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
+      window.parent.postMessage({ type: "OPEN_EXTERNAL_URL", data: { url: whatsappUrl } }, "*");
+    };
 
   const WhatsAppIcon = () => (
     <svg 
