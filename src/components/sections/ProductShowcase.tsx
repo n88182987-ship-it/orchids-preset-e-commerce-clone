@@ -3,35 +3,27 @@
 import React from "react";
 import { BeforeAfterSlider } from "@/components/ui/BeforeAfterSlider";
 import { motion } from "framer-motion";
-
-const products = [
-  {
-    id: 1,
-    title: "INDIAN WEDDING BUNDLE",
-    price: "$49.00",
-    description: "Our best-selling collection for vibrant and timeless wedding edits.",
-    before: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/f0393263-6b1f-4544-bf0a-42b0640ce9a2-colourstorepresets-com/assets/images/BFR-AFT-9-2.webp",
-    after: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/f0393263-6b1f-4544-bf0a-42b0640ce9a2-colourstorepresets-com/assets/images/CLRPIC-2-1.webp",
-  },
-  {
-    id: 2,
-    title: "CINEMATIC LIFESTYLE",
-    price: "$39.00",
-    description: "Create mood and atmosphere with our premium film-inspired presets.",
-    before: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/f0393263-6b1f-4544-bf0a-42b0640ce9a2-colourstorepresets-com/assets/images/BFR-AFT-6-5.webp",
-    after: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/f0393263-6b1f-4544-bf0a-42b0640ce9a2-colourstorepresets-com/assets/images/CLRPIC-4-4.webp",
-  },
-  {
-    id: 3,
-    title: "PORTRAIT PRO PACK",
-    price: "$29.00",
-    description: "Perfect skin tones and professional lighting in one click.",
-    before: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/f0393263-6b1f-4544-bf0a-42b0640ce9a2-colourstorepresets-com/assets/images/CLRPIC-9-10.webp",
-    after: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/f0393263-6b1f-4544-bf0a-42b0640ce9a2-colourstorepresets-com/assets/images/HERO-9.webp",
-  },
-];
+import { useCart } from "@/context/CartContext";
+import { products } from "@/lib/products";
+import { toast } from "sonner";
+import Link from "next/link";
 
 export function ProductShowcase() {
+  const { addToCart } = useCart();
+
+  const handleAddToCart = (e: React.MouseEvent, product: any) => {
+    e.preventDefault();
+    e.stopPropagation();
+    addToCart({
+      id: product.id,
+      name: product.title,
+      price: product.price,
+      image: product.after,
+      description: product.description
+    });
+    toast.success(`${product.title} added to cart!`);
+  };
+
   return (
     <section id="shop" className="py-24 bg-black">
       <div className="container">
@@ -65,24 +57,31 @@ export function ProductShowcase() {
               transition={{ delay: index * 0.1 }}
               className="group"
             >
-              <div className="mb-6 overflow-hidden border border-white/5">
-                <BeforeAfterSlider
-                  beforeImage={product.before}
-                  afterImage={product.after}
-                  aspectRatio="aspect-[4/5]"
-                />
-              </div>
+              <Link href={`/products/${product.id}`}>
+                <div className="mb-6 overflow-hidden border border-white/5 cursor-pointer">
+                  <BeforeAfterSlider
+                    beforeImage={product.before}
+                    afterImage={product.after}
+                    aspectRatio="aspect-[4/5]"
+                  />
+                </div>
+              </Link>
               <div className="space-y-2">
                 <div className="flex justify-between items-baseline">
-                  <h3 className="h3 italic text-xl group-hover:text-white transition-colors">
-                    {product.title}
-                  </h3>
-                  <span className="font-body text-sm tracking-widest">{product.price}</span>
+                  <Link href={`/products/${product.id}`}>
+                    <h3 className="h3 italic text-xl group-hover:text-white transition-colors cursor-pointer">
+                      {product.title}
+                    </h3>
+                  </Link>
+                  <span className="font-body text-sm tracking-widest">{product.priceLabel}</span>
                 </div>
                 <p className="text-sm text-muted-foreground font-light leading-relaxed">
                   {product.description}
                 </p>
-                <button className="w-full mt-4 btn-outline py-3 text-[12px]">
+                <button 
+                  onClick={(e) => handleAddToCart(e, product)}
+                  className="w-full mt-4 btn-outline py-3 text-[12px] hover:bg-white hover:text-black transition-colors"
+                >
                   ADD TO CART
                 </button>
               </div>
