@@ -171,10 +171,10 @@ const HeroGrid = () => {
                     href="#shop"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className="group relative px-10 py-4 overflow-hidden rounded-full border border-white/10 hover:border-white/30 transition-colors duration-500"
+                    className="group relative px-10 py-4 overflow-hidden rounded-full border border-white/20 hover:border-white/40 transition-colors duration-500"
                   >
-                    {/* Minimal Elegant Background */}
-                    <div className="absolute inset-0 bg-white/5 backdrop-blur-md" />
+                    {/* Minimal Elegant Effect */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-transparent to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                     
                     <div className="relative z-10 flex items-center gap-3">
                       <span className="text-white text-[10px] tracking-[0.4em] font-medium uppercase">Explore Products</span>
