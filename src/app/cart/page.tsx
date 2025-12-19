@@ -132,12 +132,35 @@ export default function CartPage() {
                       <span>$0.00</span>
                     </div>
                   </div>
-                  <div className="flex justify-between font-display text-lg">
-                    <span>Total</span>
-                    <span className="text-blue-400">${totalPrice.toFixed(2)}</span>
-                  </div>
-                  
-                  <div className="space-y-3 pt-4">
+                    <div className="flex justify-between font-display text-lg">
+                      <span>Total</span>
+                      <span className="text-blue-400">${totalPrice.toFixed(2)}</span>
+                    </div>
+
+                    <div className="space-y-4 pt-4">
+                      <div className="space-y-2">
+                        <label className="text-[10px] tracking-[0.2em] uppercase text-white/40 font-semibold">Your Name</112>
+                        <input 
+                          type="text"
+                          value={customerName}
+                          onChange={(e) => setCustomerName(e.target.value)}
+                          placeholder="ENTER YOUR FULL NAME"
+                          className="w-full bg-white/5 border border-white/10 px-4 py-3 text-[10px] tracking-widest focus:outline-none focus:border-blue-500/50 transition-colors placeholder:text-white/10"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <label className="text-[10px] tracking-[0.2em] uppercase text-white/40 font-semibold">Phone Number</112>
+                        <input 
+                          type="tel"
+                          value={customerPhone}
+                          onChange={(e) => setCustomerPhone(e.target.value)}
+                          placeholder="+91 XXXXX XXXXX"
+                          className="w-full bg-white/5 border border-white/10 px-4 py-3 text-[10px] tracking-widest focus:outline-none focus:border-blue-500/50 transition-colors placeholder:text-white/10"
+                        />
+                      </div>
+                    </div>
+                    
+                    <div className="space-y-3 pt-4">
                     <motion.button 
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
