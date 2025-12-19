@@ -33,80 +33,77 @@ export function Navbar() {
           isScrolled ? "bg-black/80 backdrop-blur-md py-4" : "bg-transparent py-6"
         }`}
       >
-        <div className="container flex items-center justify-between">
-          {/* Mobile Menu Toggle */}
-          <button
-            className="md:hidden text-white"
-            onClick={() => setIsMobileMenuOpen(true)}
-          >
-            <Menu size={24} />
-          </button>
-
-          {/* Desktop Links Left */}
-          <div className="hidden md:flex items-center gap-8">
-            {navLinks.slice(0, 2).map((link) => (
-              <Link
-                key={link.name}
-                href={link.href}
-                className="nav-link text-white hover:opacity-70 transition-opacity"
-              >
-                {link.name}
-              </Link>
-            ))}
-          </div>
-
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-2">
-            <div className="relative w-10 h-10">
-              <Image
-                src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/magic_tools__3_-removebg-preview-1766149505661.png"
-                alt="Magic Tools Logo"
-                fill
-                className="object-contain"
-              />
+          <div className="container flex items-center justify-between">
+            {/* Desktop Links Left */}
+            <div className="hidden md:flex items-center gap-10">
+              {navLinks.slice(0, 2).map((link) => (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  className="nav-link text-white/90 hover:text-white transition-colors tracking-[0.2em] text-[13px] uppercase"
+                >
+                  {link.name}
+                </Link>
+              ))}
             </div>
-            <span className="font-display text-xl tracking-[0.2em] text-white uppercase">Magic Tools</span>
-          </Link>
 
-          {/* Desktop Links Right */}
-          <div className="hidden md:flex items-center gap-8">
-            {navLinks.slice(2).map((link) => (
-              <Link
-                key={link.name}
-                href={link.href}
-                className="nav-link text-white hover:opacity-70 transition-opacity"
-              >
-                {link.name}
+            {/* Logo */}
+            <Link href="/" className="flex items-center gap-4 group">
+              <div className="relative w-14 h-14 md:w-16 md:h-16 transition-transform duration-500 group-hover:scale-110">
+                <Image
+                  src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/magic_tools__3_-removebg-preview-1766149505661.png"
+                  alt="Magic Tools Logo"
+                  fill
+                  className="object-contain"
+                />
+              </div>
+              <span className="font-display text-xl md:text-2xl tracking-[0.3em] text-white uppercase font-bold">Magic Tools</span>
+            </Link>
+
+            {/* Desktop Links Right */}
+            <div className="hidden md:flex items-center gap-10">
+              {navLinks.slice(2).map((link) => (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  className="nav-link text-white/90 hover:text-white transition-colors tracking-[0.2em] text-[13px] uppercase"
+                >
+                  {link.name}
+                </Link>
+              ))}
+              <div className="flex items-center gap-6 ml-4">
+                <button className="text-white/80 hover:text-white transition-colors">
+                  <Search size={18} strokeWidth={1.5} />
+                </button>
+                <Link href="/cart" className="text-white/80 hover:text-white transition-colors relative">
+                  <ShoppingBag size={18} strokeWidth={1.5} />
+                  {totalItems > 0 && (
+                    <span className="absolute -top-1.5 -right-1.5 bg-blue-500 text-white text-[9px] w-4 h-4 rounded-full flex items-center justify-center font-bold shadow-lg shadow-blue-500/50">
+                      {totalItems}
+                    </span>
+                  )}
+                </Link>
+              </div>
+            </div>
+
+            {/* Mobile Menu Toggle & Icons */}
+            <div className="flex md:hidden items-center gap-4">
+              <Link href="/cart" className="text-white relative">
+                <ShoppingBag size={20} strokeWidth={1.5} />
+                {totalItems > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-blue-500 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">
+                    {totalItems}
+                  </span>
+                )}
               </Link>
-            ))}
-            <button className="text-white hover:opacity-70 transition-opacity">
-              <Search size={20} strokeWidth={1.5} />
-            </button>
-            <Link href="/cart" className="text-white hover:opacity-70 transition-opacity relative">
-              <ShoppingBag size={20} strokeWidth={1.5} />
-              {totalItems > 0 && (
-                <span className="absolute -top-1 -right-1 bg-blue-500 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">
-                  {totalItems}
-                </span>
-              )}
-            </Link>
+              <button
+                className="text-white"
+                onClick={() => setIsMobileMenuOpen(true)}
+              >
+                <Menu size={24} />
+              </button>
+            </div>
           </div>
-
-          {/* Mobile Icons Right */}
-          <div className="flex md:hidden items-center gap-4">
-            <button className="text-white">
-              <Search size={20} strokeWidth={1.5} />
-            </button>
-            <Link href="/cart" className="text-white relative">
-              <ShoppingBag size={20} strokeWidth={1.5} />
-              {totalItems > 0 && (
-                <span className="absolute -top-1 -right-1 bg-blue-500 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">
-                  {totalItems}
-                </span>
-              )}
-            </Link>
-          </div>
-        </div>
       </nav>
 
       {/* Mobile Menu Overlay */}
