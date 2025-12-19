@@ -4,10 +4,12 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { Search, ShoppingBag, Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useCart } from "@/context/CartContext";
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { totalItems } = useCart();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,9 +21,8 @@ export function Navbar() {
 
   const navLinks = [
     { name: "Home", href: "/" },
-    { name: "Shop", href: "#shop" },
-    { name: "Gallery", href: "#gallery" },
-    { name: "Dashboard", href: "/dashboard" },
+    { name: "Shop", href: "/#shop" },
+    { name: "Gallery", href: "/#gallery" },
   ];
 
   return (
@@ -53,7 +54,7 @@ export function Navbar() {
             ))}
           </div>
 
-          {/* Logo (Placeholder or simple text for now, matches ref site minimal style) */}
+          {/* Logo */}
           <Link href="/" className="flex flex-col items-center">
              <span className="font-display text-xl tracking-[0.3em] text-white">CLR</span>
           </Link>
@@ -72,12 +73,14 @@ export function Navbar() {
             <button className="text-white hover:opacity-70 transition-opacity">
               <Search size={20} strokeWidth={1.5} />
             </button>
-            <button className="text-white hover:opacity-70 transition-opacity relative">
+            <Link href="/cart" className="text-white hover:opacity-70 transition-opacity relative">
               <ShoppingBag size={20} strokeWidth={1.5} />
-              <span className="absolute -top-1 -right-1 bg-white text-black text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">
-                0
-              </span>
-            </button>
+              {totalItems > 0 && (
+                <span className="absolute -top-1 -right-1 bg-blue-500 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">
+                  {totalItems}
+                </span>
+              )}
+            </Link>
           </div>
 
           {/* Mobile Icons Right */}
@@ -85,9 +88,14 @@ export function Navbar() {
             <button className="text-white">
               <Search size={20} strokeWidth={1.5} />
             </button>
-            <button className="text-white relative">
+            <Link href="/cart" className="text-white relative">
               <ShoppingBag size={20} strokeWidth={1.5} />
-            </button>
+              {totalItems > 0 && (
+                <span className="absolute -top-1 -right-1 bg-blue-500 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">
+                  {totalItems}
+                </span>
+              )}
+            </Link>
           </div>
         </div>
       </nav>
