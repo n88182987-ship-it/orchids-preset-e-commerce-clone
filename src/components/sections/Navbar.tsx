@@ -118,7 +118,7 @@ export function Navbar() {
             </div>
 
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-4 group">
+            <Link href="/" onClick={handleHomeClick} className="flex items-center gap-4 group">
               <div className="relative w-14 h-14 md:w-16 md:h-16 transition-transform duration-500 group-hover:scale-110">
                 <Image
                   src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/magic_tools__3_-removebg-preview-1766149505661.png"

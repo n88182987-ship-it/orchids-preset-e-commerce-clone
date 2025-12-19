@@ -61,7 +61,9 @@ export function ProductShowcase() {
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+        <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 ${
+          filteredProducts.length === 1 ? "lg:flex lg:justify-center" : ""
+        }`}>
           {filteredProducts.map((product, index) => (
             <motion.div
               key={product.id}
@@ -69,7 +71,7 @@ export function ProductShowcase() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="group"
+              className={`group ${filteredProducts.length === 1 ? "max-w-md w-full" : ""}`}
             >
               <Link href={`/products/${product.id}`}>
                 <div className="mb-6 overflow-hidden border border-white/5 cursor-pointer">
