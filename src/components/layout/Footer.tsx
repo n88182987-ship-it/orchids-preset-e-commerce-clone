@@ -78,9 +78,9 @@ const Footer = () => {
               <div className="elementor-element elementor-element-78ef72e w-full mt-12">
                 <div className="elementor-widget-container text-center">
                   <div className="hfe-copyright-wrapper">
-                    <span className="font-body text-[13px] font-light tracking-[0.2em] uppercase text-[#a3a3a3]">
-                      Copyright © 2025 Colour Store Presets
-                    </span>
+                      <span className="font-body text-[13px] font-light tracking-[0.2em] uppercase text-[#a3a3a3]">
+                        Copyright © 2025 Magic Tools
+                      </span>
                   </div>
                 </div>
               </div>
