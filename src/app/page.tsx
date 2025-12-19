@@ -2,6 +2,7 @@ import HeroGrid from "@/components/sections/HeroGrid";
 import { Navbar } from "@/components/sections/Navbar";
 import { ProductShowcase } from "@/components/sections/ProductShowcase";
 import { CategoryGrid } from "@/components/sections/CategoryGrid";
+import { ComparisonDetail } from "@/components/sections/ComparisonDetail";
 import Footer from "@/components/layout/Footer";
 
 export default function Home() {
@@ -39,7 +40,7 @@ export default function Home() {
                 </div>
               </div>
               <div className="relative aspect-[4/5] overflow-hidden border border-white/5">
-                <ProductShowcaseDetail />
+                <ComparisonDetail />
               </div>
             </div>
           </div>
@@ -49,15 +50,4 @@ export default function Home() {
       </div>
     </main>
   );
-}
-
-function ProductShowcaseDetail() {
-  const before = "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/f0393263-6b1f-4544-bf0a-42b0640ce9a2-colourstorepresets-com/assets/images/CLRPIC-6-11.webp";
-  const after = "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/f0393263-6b1f-4544-bf0a-42b0640ce9a2-colourstorepresets-com/assets/images/CLRPIC-7-13.webp";
-  
-  // Use client component inside this server component? 
-  // Actually, BeforeAfterSlider is a client component, so we need to import it.
-  // Wait, I can't import a client component directly if it uses hooks? No, it's fine in Next 15.
-  const { BeforeAfterSlider } = require("@/components/ui/BeforeAfterSlider");
-  return <BeforeAfterSlider beforeImage={before} afterImage={after} />;
 }
