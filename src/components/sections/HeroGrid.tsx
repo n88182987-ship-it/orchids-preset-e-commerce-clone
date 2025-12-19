@@ -47,15 +47,16 @@ const HeroGrid = () => {
           <div className="intro-center flex items-center justify-center relative z-10 aspect-square md:aspect-auto overflow-hidden">
             <div className="absolute inset-0 bg-blue-950/40 backdrop-blur-xl border border-blue-400/30"></div>
             <div className="intro-content flex flex-col items-center justify-center text-center p-4 relative z-20">
-              <div className="relative w-24 h-24 mb-6 md:w-32 md:h-32 drop-shadow-[0_0_15px_rgba(59,130,246,0.5)]">
-                <Image
-                  src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/test-clones/f0393263-6b1f-4544-bf0a-42b0640ce9a2-colourstorepresets-com/assets/images/CLR-REAL-1-8.png"
-                  alt="Colour Store Logo"
-                  fill
-                  className="object-contain brightness-0 invert"
-                  priority
-                />
-              </div>
+                <div className="relative w-24 h-24 mb-6 md:w-32 md:h-32 drop-shadow-[0_0_15px_rgba(59,130,246,0.5)]">
+                  <Image
+                    src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/magic_tools__3_-removebg-preview-1766149505661.png"
+                    alt="Magic Tools Logo"
+                    fill
+                    className="object-contain"
+                    priority
+                  />
+                </div>
+                <h1 className="text-white font-display text-2xl md:text-3xl tracking-[0.3em] mb-8 uppercase">Magic Tools</h1>
               <a
                 href="#shop"
                 className="intro-btn border border-blue-400/50 bg-blue-500/10 text-white uppercase transition-all duration-500 px-8 py-4 tracking-[0.3em] font-body font-light text-[12px] md:text-[14px] hover:bg-blue-500 hover:text-white hover:border-blue-400 hover:shadow-[0_0_30px_rgba(59,130,246,0.4)] whitespace-nowrap backdrop-blur-md"
