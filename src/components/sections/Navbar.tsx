@@ -56,8 +56,16 @@ export function Navbar() {
           </div>
 
           {/* Logo */}
-          <Link href="/" className="flex flex-col items-center">
-             <span className="font-display text-xl tracking-[0.3em] text-white">CLR</span>
+          <Link href="/" className="flex items-center gap-2">
+            <div className="relative w-10 h-10">
+              <Image
+                src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/magic_tools__3_-removebg-preview-1766149505661.png"
+                alt="Magic Tools Logo"
+                fill
+                className="object-contain"
+              />
+            </div>
+            <span className="font-display text-xl tracking-[0.2em] text-white uppercase">Magic Tools</span>
           </Link>
 
           {/* Desktop Links Right */}
