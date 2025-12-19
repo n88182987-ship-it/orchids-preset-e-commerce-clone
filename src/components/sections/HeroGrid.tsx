@@ -97,58 +97,127 @@ const HeroGrid = () => {
             </motion.div>
           ))}
 
-          {/* Center Focal Area */}
-          <motion.div 
-            variants={{
-              hidden: { opacity: 0, scale: 0.5 },
-              visible: { 
-                opacity: 1, 
-                scale: 1,
-                transition: { type: "spring", damping: 15, stiffness: 100, delay: 1 }
-              }
-            }}
-            className="intro-center flex items-center justify-center relative z-20 aspect-square md:aspect-auto overflow-hidden"
-          >
+            {/* Center Focal Area */}
             <motion.div 
-              animate={{ 
-                boxShadow: ["0 0 50px rgba(30,58,138,0.3)", "0 0 80px rgba(59,130,246,0.5)", "0 0 50px rgba(30,58,138,0.3)"]
+              variants={{
+                hidden: { opacity: 0, scale: 0.5 },
+                visible: { 
+                  opacity: 1, 
+                  scale: 1,
+                  transition: { type: "spring", damping: 15, stiffness: 100, delay: 1 }
+                }
               }}
-              transition={{ duration: 4, repeat: Infinity }}
-              className="absolute inset-0 bg-black/40 backdrop-blur-3xl border border-white/10"
-            />
-            <div className="intro-content flex flex-col items-center justify-center text-center p-8 relative z-30 w-full h-full">
-                <motion.div 
-                  animate={{ y: [0, -10, 0] }}
-                  transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                  className="relative w-32 h-32 mb-6 md:w-40 md:h-40"
-                >
-                  <Image
-                    src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/magic_tools__3_-removebg-preview-1766149505661.png"
-                    alt="Magic Tools Logo"
-                    fill
-                    className="object-contain"
-                    priority
+              className="intro-center flex items-center justify-center relative z-20 aspect-square md:aspect-auto overflow-hidden group/center"
+            >
+              {/* Animated Background Layers */}
+              <motion.div 
+                animate={{ 
+                  rotate: [0, 360],
+                  scale: [1, 1.1, 1]
+                }}
+                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                className="absolute inset-[-50%] bg-gradient-to-tr from-blue-600/20 via-transparent to-blue-400/20 blur-[100px] opacity-50"
+              />
+              
+              <div className="absolute inset-0 bg-black/40 backdrop-blur-3xl border border-white/10 overflow-hidden">
+                {/* Floating particles effect */}
+                {[...Array(6)].map((_, i) => (
+                  <motion.div
+                    key={i}
+                    animate={{
+                      y: [0, -100, 0],
+                      x: [0, Math.random() * 50 - 25, 0],
+                      opacity: [0, 0.5, 0],
+                    }}
+                    transition={{
+                      duration: 5 + Math.random() * 5,
+                      repeat: Infinity,
+                      delay: Math.random() * 5,
+                    }}
+                    className="absolute w-1 h-1 bg-blue-400 rounded-full"
+                    style={{
+                      left: `${Math.random() * 100}%`,
+                      top: `${Math.random() * 100}%`,
+                    }}
                   />
-                </motion.div>
+                ))}
                 
-                <div className="space-y-2 mb-10">
-                  <h1 className="text-white font-display text-2xl md:text-4xl tracking-[0.4em] uppercase font-bold">Magic Tools</h1>
-                  <p className="text-[10px] md:text-[12px] text-white/60 tracking-[0.5em] uppercase font-light">Elevate Your Visual Story</p>
-                </div>
+                {/* Shimmer Border */}
+                <motion.div 
+                  animate={{
+                    backgroundPosition: ["0% 0%", "200% 200%"]
+                  }}
+                  transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+                  className="absolute inset-0 opacity-20 pointer-events-none"
+                  style={{
+                    background: "linear-gradient(45deg, transparent 25%, rgba(255,255,255,0.2) 50%, transparent 75%)",
+                    backgroundSize: "200% 200%"
+                  }}
+                />
+              </div>
 
-              <motion.a
-                href="#shop"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="group relative flex items-center gap-4 px-8 py-4 overflow-hidden"
-              >
-                <div className="absolute inset-0 bg-white/5 group-hover:bg-white transition-colors duration-500" />
-                <div className="absolute inset-0 border border-white/20 group-hover:border-white transition-colors duration-500" />
-                <span className="relative z-10 text-white group-hover:text-black transition-colors duration-500 tracking-[0.3em] text-[11px] font-light">EXPLORE STORE</span>
-                <div className="relative z-10 w-6 h-[1px] bg-white group-hover:bg-black transition-colors duration-500" />
-              </motion.a>
-            </div>
-          </motion.div>
+              <div className="intro-content flex flex-col items-center justify-center text-center p-8 relative z-30 w-full h-full">
+                  <motion.div 
+                    animate={{ 
+                      y: [0, -10, 0],
+                      filter: ["drop-shadow(0 0 0px rgba(59,130,246,0))", "drop-shadow(0 0 20px rgba(59,130,246,0.5))", "drop-shadow(0 0 0px rgba(59,130,246,0))"]
+                    }}
+                    transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                    className="relative w-32 h-32 mb-6 md:w-44 md:h-44"
+                  >
+                    <Image
+                      src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/document-uploads/magic_tools__3_-removebg-preview-1766149505661.png"
+                      alt="Magic Tools Logo"
+                      fill
+                      className="object-contain"
+                      priority
+                    />
+                  </motion.div>
+                  
+                  <div className="space-y-3 mb-12">
+                    <motion.h1 
+                      initial={{ letterSpacing: "0.2em", opacity: 0 }}
+                      animate={{ letterSpacing: "0.4em", opacity: 1 }}
+                      transition={{ duration: 1.5, delay: 1.2 }}
+                      className="text-white font-display text-3xl md:text-5xl tracking-[0.4em] uppercase font-bold"
+                    >
+                      Magic Tools
+                    </motion.h1>
+                    <motion.p 
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 0.6, y: 0 }}
+                      transition={{ duration: 1, delay: 1.5 }}
+                      className="text-[10px] md:text-[13px] text-white/60 tracking-[0.5em] uppercase font-light"
+                    >
+                      Elevate Your Visual Story
+                    </motion.p>
+                  </div>
+  
+                <motion.a
+                  href="#shop"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="group relative flex items-center gap-4 px-10 py-5 overflow-hidden"
+                >
+                  <div className="absolute inset-0 bg-white/5 group-hover:bg-white transition-all duration-700 ease-expo" />
+                  <div className="absolute inset-0 border border-white/20 group-hover:border-white transition-all duration-700 ease-expo" />
+                  
+                  {/* Button Glint */}
+                  <motion.div 
+                    animate={{ left: ["-100%", "200%"] }}
+                    transition={{ duration: 3, repeat: Infinity, repeatDelay: 4 }}
+                    className="absolute inset-0 w-1/2 bg-gradient-to-r from-transparent via-white/10 to-transparent skew-x-12"
+                  />
+
+                  <span className="relative z-10 text-white group-hover:text-black transition-colors duration-500 tracking-[0.4em] text-[12px] font-medium">EXPLORE STORE</span>
+                  <motion.div 
+                    animate={{ width: [24, 48, 24] }}
+                    transition={{ duration: 3, repeat: Infinity }}
+                    className="relative z-10 h-[1px] bg-white group-hover:bg-black transition-colors duration-500" 
+                  />
+                </motion.a>
+              </div>
+            </motion.div>
 
           {/* Last 8 Images */}
           {imagesAfter.map((img, index) => (
